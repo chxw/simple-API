@@ -2,7 +2,7 @@ const express = require('express')
 var cors = require('cors')
 const bodyParser = require("body-parser")
 const router = express.Router()
-const data = require('app.json')
+const data = require('./app.json')
 var app = express()
 const PORT = process.env.PORT || 5000
 
