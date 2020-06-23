@@ -14,8 +14,8 @@ app.post('/rides', (req, res) => {
   	const lat = req.body.lat
   	const lng = req.body.lng
 
-  	if (req.body){
+  	// if (req.body){
   		res.send('app.json')
-  	}
+  	// }
   }
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
