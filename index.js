@@ -23,6 +23,6 @@ router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
   		res.send('app.json')
   	}
   	res.send('{"error":"Whoops, something is wrong with your data!"}')
- }
+ })
 
 app.use("/", router)
