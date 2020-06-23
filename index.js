@@ -1,7 +1,11 @@
 const express = require('express')
+const bodyParser = require("body-parser")
+const router = express.Router()
 const app = express()
-const path = require('path')
 const PORT = process.env.PORT || 5000
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 app.use(function(req, res, next)){
   res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
@@ -9,7 +13,9 @@ app.use(function(req, res, next)){
   next();
 }
 
-app.post('/rides', (req, res) => {
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+router.post('/rides', (req, res) => {
   	const username = req.body.username
   	const lat = req.body.lat
   	const lng = req.body.lng
@@ -18,4 +24,5 @@ app.post('/rides', (req, res) => {
   		res.send('app.json')
   	// }
   }
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+app.use("/", router)
