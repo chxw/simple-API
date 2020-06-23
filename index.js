@@ -14,7 +14,7 @@ app.post('/rides', (req, res) => {
   	const lat = req.body.lat
   	const lng = req.body.lng
 
-  	if (username && lat && lng){
+  	if (req.body){
   		res.send('app.json')
   	}
   }
