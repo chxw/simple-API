@@ -1,17 +1,28 @@
 const express = require('express')
-var cors = require('cors')
 const bodyParser = require("body-parser")
 const router = express.Router()
 const data = require('./app.json')
-var app = express()
+const { Client } = require('pg')
 const PORT = process.env.PORT || 5000
-
+var app = express()
 var urlencodedParser = bodyParser.urlencoded({extend: false})
+var cors = require('cors')
 var corsOptions = {
 	origin: '*',
 	optionsSuccessStatus: 200
 }
 
+// Connect to Heroku PostgreSQL, configure using default options
+const client = new Client({
+	connectionString: process.env.DATABASE_URL,
+	ssl:{
+		rejectUnauthorized: false
+	}
+})
+
+client.connect()
+
+// Functions
 function isFloat(n){
 	return Number(n) == n && n % 1 !== 0;
 }
