@@ -2,6 +2,7 @@ const express = require('express')
 var cors = require('cors')
 const bodyParser = require("body-parser")
 const router = express.Router()
+const data = require('app.json')
 var app = express()
 const PORT = process.env.PORT || 5000
 
@@ -20,7 +21,7 @@ router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
   	const lng = req.body.lng
 
   	if (req.body.username){
-  		res.send('app.json')
+  		res.json(data)
   	}
   	res.send('{"error":"Whoops, something is wrong with your data!"}')
  })
