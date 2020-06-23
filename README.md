@@ -39,6 +39,21 @@ $ curl -X POST https://agile-dusk-02160.herokuapp.com/rides
 $ {"error":"Whoops, something is wrong with your data!"}   
 ```
 
+#### Basic Requirements
+
+- [X] Must return JSON
+- [X] The required fields and exact field names for submission to this API are username, lat, and lng. If a submission is missing any one of the required fields, return the following JSON as the response: {"error":"Whoops, something is wrong with your data!"}
+- [X] If all the required fields are submitted with request, API shall return a JSON array of locations of vehicles. A vehicle in the JSON array is an object with the mandatory keys: username, lat, lng, and created_at where lat and lng are numbers. Example output: [{"_id":"5cdf411856e9c200042989d7","username":"JANET","lat":42.354951,"lng":-71.0509,"created_at":"2020-05-17T23:17:44.427Z"},{"_id":"5cf583aafbbfe80004456918","username":"mXfkjrFw","lat":42.3453,"lng":-71.0464,"created_at":"2020-06-03T20:31:38.378Z"},{"_id":"5cf583aafbbfe80004456919","username":"nZXB8ZHz","lat":42.3662,"lng":-71.0621,"created_at":"2020-06-03T20:31:38.611Z"},{"_id":"5cf583aafbbfe8000445691a","username":"Tkwu74WC","lat":42.3603,"lng":-71.0547,"created_at":"2020-06-03T20:31:38.786Z"},{"_id":"5cf583aafbbfe8000445691b","username":"5KWpnAJN","lat":42.3472,"lng":-71.0802,"created_at":"2020-06-03T20:31:38.932Z"},{"_id":"5cf583abfbbfe8000445691c","username":"uf5ZrXYw","lat":42.3663,"lng":-71.0544,"created_at":"2020-06-03T20:31:39.077Z"},{"_id":"5cf583acfbbfe8000445691d","username":"VMerzMH8","lat":42.3542,"lng":-71.0704,"created_at":"2020-06-03T20:31:40.400Z"}]. A note about security: with the exception of the data requirements above, please note that I did not mention a thing about security or error handling in the requirements, including authentication. There is a reason for this, as you will see in the next lab.
+- [X] Cross-Origin Resource Sharing must be enabled for POST /rides. Without this, you will encounter an error in the JavaScript console of your web browser when you load your map.
+
+#### Going Beyond
+- [] The basic requirements for POST /rides do not include storing the ride request from a passenger into a database. Store the ride request data username, lat, and lng into a Postgres database. The nodepsqlapp example is a Node.js + Express + Postgres system. One requirement: lat and lng must be stored as floating point numbers.
+- [] If you store ride request data from a passenger (see above), then it only make sense to store data on vehicles as well. Build an API route, an HTTP POST route, for vehicles to "check-in" their availability to pick up passengers. Store the vehicle data username, lat, and lng into a Postgres database. The fields are consistent with ride requests from passengers.
+- [] Write a GET /passenger.json API route that returns a list of all passenger records for a given username as a JSON string if record(s) exist in database. The mandatory parameter for this API is username. If the username query parameter is empty, not provided, or no results found, return empty JSON list [].
+- [] Write a GET /vehicle.json API route that returns a list of all vehicle records for a given username as a JSON string if record(s) exist in database. The mandatory parameter for this API is username. If the username query parameter is empty, not provided, or no results found, return empty JSON list [].
+- [] Write a GET / route --home page, the root, the index. Accessing this on a web browser (e.g., https://[YOUR_APP_IDENTIFIER_RANDOMLY_GENERATED].herokuapp.com/) shall display list of all the vehicles and/or passengers in the database. Simply outputting JSON as the page is unacceptable; route must return HTML.
+- [] Build another web application + server with the same basic requirements except using a different programming language and framework (e.g., using Django or Flask for Python, Rails or Sinatra for Ruby). Assess the differences and similarities in your README.
+
 ### Running Locally
 
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.

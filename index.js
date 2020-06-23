@@ -7,18 +7,17 @@ var app = express()
 const PORT = process.env.PORT || 5000
 
 var urlencodedParser = bodyParser.urlencoded({extend: false})
-
-function isFloat(n){
-	return Number(n) == n && n % 1 !== 0;
-}
-
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
-
 var corsOptions = {
 	origin: '*',
 	optionsSuccessStatus: 200
 }
 
+function isFloat(n){
+	return Number(n) == n && n % 1 !== 0;
+}
+
+
+// Handle requests for vehicle location information
 router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
   	const username = req.body.username
   	const lat = req.body.lat
@@ -27,7 +26,9 @@ router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
   	if (req.body.username && isFloat(lat) && isFloat(lng)){
   		res.json(data)
   	}
-  	res.send('{"error":"Whoops, something is wrong with your data!"}')
+  	res.json({error:"Whoops, something is wrong with your data!"})
  })
 
 app.use("/", router)
+
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
