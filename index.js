@@ -1,4 +1,5 @@
 const express = require('express')
+var cors = require('cors')
 const bodyParser = require("body-parser")
 const router = express.Router()
 const app = express()
@@ -15,7 +16,7 @@ app.use(function(req, res, next)){
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-router.post('/rides', (req, res) => {
+router.post('/rides', cors(), (req, res) => {
   	const username = req.body.username
   	const lat = req.body.lat
   	const lng = req.body.lng
