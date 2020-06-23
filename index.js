@@ -8,6 +8,10 @@ const PORT = process.env.PORT || 5000
 
 var urlencodedParser = bodyParser.urlencoded({extend: false})
 
+function isFloat(n){
+	return Number(n) == n && n % 1 !== 0;
+}
+
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 var corsOptions = {
@@ -20,7 +24,7 @@ router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
   	const lat = req.body.lat
   	const lng = req.body.lng
 
-  	if (req.body.username){
+  	if (req.body.username && isFloat(lat) && isFloat(lng)){
   		res.json(data)
   	}
   	res.send('{"error":"Whoops, something is wrong with your data!"}')
