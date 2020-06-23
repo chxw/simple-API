@@ -5,7 +5,7 @@ const router = express.Router()
 var app = express()
 const PORT = process.env.PORT || 5000
 
-var urlencodedParser = bodyParser.urlencoded ({extend: false})
+var urlencodedParser = bodyParser.urlencoded({extend: false})
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
@@ -14,9 +14,10 @@ router.post('/rides', cors(), urlencodedParser, (req, res) => {
   	const lat = req.body.lat
   	const lng = req.body.lng
 
-  	if (req.body.username && req.body.lat && req.body.lng){
+  	if (req.body.username){
   		res.send('app.json')
   	}
+  	res.send('{"error":"Whoops, something is wrong with your data!"}')
  }
 
 app.use("/", router)
