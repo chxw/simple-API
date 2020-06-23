@@ -9,7 +9,9 @@ var urlencodedParser = bodyParser.urlencoded({extend: false})
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-router.post('/rides', cors(), urlencodedParser, (req, res) => {
+app.use(cors())
+
+router.post('/rides', urlencodedParser, (req, res) => {
   	const username = req.body.username
   	const lat = req.body.lat
   	const lng = req.body.lng
