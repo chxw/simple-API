@@ -81,6 +81,7 @@ router.get('/passenger.json', cors(corsOptions), (req, res) => {
 	// }
 
 	var username = req.query.username
+	username = validator.escape(username)
 
 	client
 		.query('SELECT * FROM passenger WHERE username = $1', [username])
