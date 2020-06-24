@@ -125,3 +125,5 @@ $ heroku open
 [https://stackoverflow.com/questions/26292267/how-do-i-check-if-query-string-has-values-in-express-js-node-js](https://stackoverflow.com/questions/26292267/how-do-i-check-if-query-string-has-values-in-express-js-node-js)
 
 [http://expressjs.com/en/api.html#req.query](http://expressjs.com/en/api.html#req.query)
+
+[https://node-postgres.com/features/pooling](https://node-postgres.com/features/pooling)
