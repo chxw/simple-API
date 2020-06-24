@@ -47,7 +47,7 @@ $ {"error":"Whoops, something is wrong with your data!"}
 - [X] Cross-Origin Resource Sharing must be enabled for POST /rides. Without this, you will encounter an error in the JavaScript console of your web browser when you load your map.
 
 #### Going Beyond
-- [] The basic requirements for POST /rides do not include storing the ride request from a passenger into a database. Store the ride request data username, lat, and lng into a Postgres database. The nodepsqlapp example is a Node.js + Express + Postgres system. One requirement: lat and lng must be stored as floating point numbers.
+- [X] The basic requirements for POST /rides do not include storing the ride request from a passenger into a database. Store the ride request data username, lat, and lng into a Postgres database. The nodepsqlapp example is a Node.js + Express + Postgres system. One requirement: lat and lng must be stored as floating point numbers.
 - [] If you store ride request data from a passenger (see above), then it only make sense to store data on vehicles as well. Build an API route, an HTTP POST route, for vehicles to "check-in" their availability to pick up passengers. Store the vehicle data username, lat, and lng into a Postgres database. The fields are consistent with ride requests from passengers.
 - [] Write a GET /passenger.json API route that returns a list of all passenger records for a given username as a JSON string if record(s) exist in database. The mandatory parameter for this API is username. If the username query parameter is empty, not provided, or no results found, return empty JSON list [].
 - [] Write a GET /vehicle.json API route that returns a list of all vehicle records for a given username as a JSON string if record(s) exist in database. The mandatory parameter for this API is username. If the username query parameter is empty, not provided, or no results found, return empty JSON list [].
@@ -109,3 +109,5 @@ $ heroku open
 [https://apple.stackexchange.com/questions/51709/can-i-create-a-desktop-shortcut-alias-to-a-folder-from-the-terminal](https://apple.stackexchange.com/questions/51709/can-i-create-a-desktop-shortcut-alias-to-a-folder-from-the-terminal)
 
 [https://www.javatpoint.com/steps-to-write-and-execute-a-shell-script](https://www.javatpoint.com/steps-to-write-and-execute-a-shell-script)
+
+[https://stackoverflow.com/questions/46393011/postgres-how-to-view-contents-of-a-table](https://stackoverflow.com/questions/46393011/postgres-how-to-view-contents-of-a-table)
