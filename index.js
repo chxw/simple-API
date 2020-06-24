@@ -58,7 +58,7 @@ app.use('/', router)
 // Handle requests for accessing vehicle location information
 router.post('/rides', cors(corsOptions), check('username'), check('lat'), check('lng'), (req, res) => {
 	const errors = validationResult(req);
-	if (!errors.isEmpty() || Object.keys(req.query).length === 0 || !isFloat(req.body.lat) || !isFloat(req.body.lng)){
+	if (!errors.isEmpty() || Object.keys(req.body).length === 0 || !isFloat(req.body.lat) || !isFloat(req.body.lng)){
 		res.json({"error":"Whoops, something is wrong with your data!"})
 	}
 
