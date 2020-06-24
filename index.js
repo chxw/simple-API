@@ -46,13 +46,10 @@ function isString(x){
 }
 
 function checkExists(table, field, value){
-	client.query('select exists(select 1 from $1 where $2 = $3', [table, field, value], (err, res) =>{
-		if (err) throw err
-		if (res)
-			console.log(res)
-		client.end()
-	})
-
+	client.query('select exists(select 1 from $1 where $2 = $3', [table, field, value])
+		.then(result => console.log(result))
+		.catch(e)
+		.then(() => client.end())
 }
 
 app.use('/', router)
