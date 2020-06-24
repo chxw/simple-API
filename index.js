@@ -49,7 +49,7 @@ app.use('/', router)
 
 // Handle requests for vehicle location information
 router.post('/rides', cors(corsOptions), (req, res) => {
-  	var username = JSON.stringify(req.body.username)
+  	var username = req.body.username
   	var lat = req.body.lat
   	var lng = req.body.lng
 

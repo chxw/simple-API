@@ -105,3 +105,7 @@ $ heroku open
 [https://stackoverflow.com/questions/20775490/how-to-create-or-manage-heroku-postgres-database-instance](https://stackoverflow.com/questions/20775490/how-to-create-or-manage-heroku-postgres-database-instance)
 
 [https://stackoverflow.com/questions/15364817/type-of-request-body-for-expressjs](https://stackoverflow.com/questions/15364817/type-of-request-body-for-expressjs)
+
+[https://apple.stackexchange.com/questions/51709/can-i-create-a-desktop-shortcut-alias-to-a-folder-from-the-terminal](https://apple.stackexchange.com/questions/51709/can-i-create-a-desktop-shortcut-alias-to-a-folder-from-the-terminal)
+
+[https://www.javatpoint.com/steps-to-write-and-execute-a-shell-script](https://www.javatpoint.com/steps-to-write-and-execute-a-shell-script)
