@@ -45,12 +45,14 @@ function isString(x){
 	return Object.prototype.toString.call(x) === "[object String]"
 }
 
-function exists(x){
-	client
-		.query('select exists(select 1 from $1 where $2 = $3', [$1, $2, $3])
-		.then()
-		.catch(e)
-		.then(client.end())
+function checkExists(table, field, value){
+	client.query('select exists(select 1 from $1 where $2 = $3', [table, field, value], (err, res) =>{
+		if (err) throw err
+		if (res)
+			console.log(res)
+		client.end()
+	})
+
 }
 
 app.use('/', router)
@@ -75,8 +77,9 @@ router.post('/rides', cors(corsOptions), (req, res) => {
   	res.json({"error":"Whoops, something is wrong with your data!"})
  })
 
+// Handle requests for passenger information
 router.get('/passenger.json', cors(corsOptions), (req, res) => {
-	if(req.body.username){
+	if(req.body.username && checkExists(req.body.username)){
 		var username = req.body.username
 
 		client
