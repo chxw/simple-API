@@ -91,3 +91,9 @@ $ heroku open
 [https://expressjs.com/en/resources/middleware/cors.html](https://expressjs.com/en/resources/middleware/cors.html)
 
 [https://stackoverflow.com/questions/44849082/sending-a-json-file-to-express-server-using-js](https://stackoverflow.com/questions/44849082/sending-a-json-file-to-express-server-using-js)
+
+[https://node-postgres.com/api/client#client.query](https://node-postgres.com/api/client#client.query)
+
+[https://devcenter.heroku.com/articles/request-timeout](https://devcenter.heroku.com/articles/request-timeout)
+
+[https://devcenter.heroku.com/articles/error-codes#h12-request-timeout](https://devcenter.heroku.com/articles/error-codes#h12-request-timeout)
