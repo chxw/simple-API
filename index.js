@@ -53,6 +53,7 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
 	var errors = validationResult(req)
 	if (!errors.isEmpty() || Object.keys(req.body).length === 0 || !isFloat(req.body.lat) || !isFloat(req.body.lng)){
 		res.json({"error":"Whoops, something is wrong with your data!"})
+		return
 	}
 
 	var username = req.body.username
@@ -75,6 +76,7 @@ router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) =
 	var errors = validationResult(req)
 	if (!errors.isEmpty() ||  Object.keys(req.query).length === 0){
 		res.json([])
+		return
 	}
 
 	var username = req.query.username
