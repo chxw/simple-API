@@ -119,3 +119,5 @@ $ heroku open
 [https://devcenter.heroku.com/changelog-items/438](https://devcenter.heroku.com/changelog-items/438)
 
 [https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-mac](https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-mac)
+
+[https://stackoverflow.com/questions/51924864/express-validator-how-to-check-queries](https://stackoverflow.com/questions/51924864/express-validator-how-to-check-queries)
