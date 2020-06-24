@@ -49,10 +49,24 @@ $ {"error":"Whoops, something is wrong with your data!"}
 #### Going Beyond
 - [X] The basic requirements for POST /rides do not include storing the ride request from a passenger into a database. Store the ride request data username, lat, and lng into a Postgres database. The nodepsqlapp example is a Node.js + Express + Postgres system. One requirement: lat and lng must be stored as floating point numbers.
 - [] If you store ride request data from a passenger (see above), then it only make sense to store data on vehicles as well. Build an API route, an HTTP POST route, for vehicles to "check-in" their availability to pick up passengers. Store the vehicle data username, lat, and lng into a Postgres database. The fields are consistent with ride requests from passengers.
-- [] Write a GET /passenger.json API route that returns a list of all passenger records for a given username as a JSON string if record(s) exist in database. The mandatory parameter for this API is username. If the username query parameter is empty, not provided, or no results found, return empty JSON list [].
+- [X] Write a GET /passenger.json API route that returns a list of all passenger records for a given username as a JSON string if record(s) exist in database. The mandatory parameter for this API is username. If the username query parameter is empty, not provided, or no results found, return empty JSON list [].
 - [] Write a GET /vehicle.json API route that returns a list of all vehicle records for a given username as a JSON string if record(s) exist in database. The mandatory parameter for this API is username. If the username query parameter is empty, not provided, or no results found, return empty JSON list [].
 - [] Write a GET / route --home page, the root, the index. Accessing this on a web browser (e.g., https://[YOUR_APP_IDENTIFIER_RANDOMLY_GENERATED].herokuapp.com/) shall display list of all the vehicles and/or passengers in the database. Simply outputting JSON as the page is unacceptable; route must return HTML.
 - [] Build another web application + server with the same basic requirements except using a different programming language and framework (e.g., using Django or Flask for Python, Rails or Sinatra for Ruby). Assess the differences and similarities in your README.
+
+#### Testing edge cases
+
+```
+chelsea@MBA-spg ride-API % curl -X GET 'https://agile-dusk-02160.herokuapp.com/passenger.json?username='           
+[]%                                                                                                  chelsea@MBA-spg ride-API % curl -X GET 'https://agile-dusk-02160.herokuapp.com/passenger.json?username=s'
+[]%                                                                                                  chelsea@MBA-spg ride-API % curl -X GET 'https://agile-dusk-02160.herokuapp.com/passenger.json?username'  
+[]%                                                                                                  chelsea@MBA-spg ride-API % curl -X GET 'https://agile-dusk-02160.herokuapp.com/passenger.json?'     
+[]%                                                                                                  chelsea@MBA-spg ride-API % curl -X GET 'https://agile-dusk-02160.herokuapp.com/passenger.json' 
+[]%                                                                                                  chelsea@MBA-spg ride-API % curl --data "username=jesus&lat=1&lng=12" https://agile-dusk-02160.herokuapp.com/rides 
+{"error":"Whoops, something is wrong with your data!"}%                                              chelsea@MBA-spg ride-API % curl --data "username=jesus" https://agile-dusk-02160.herokuapp.com/rides
+{"error":"Whoops, something is wrong with your data!"}%                                              chelsea@MBA-spg ride-API % curl --data "" https://agile-dusk-02160.herokuapp.com/rides 
+{"error":"Whoops, something is wrong with your data!"}% 
+```
 
 ### Running Locally
 

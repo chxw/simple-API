@@ -54,7 +54,7 @@ function isString(x){
 
 app.use('/', router)
 
-// Handle requests for accessing vehicle location information
+// Passenger requests for vehicle information
 router.post('/rides', cors(corsOptions), check('username'), check('lat'), check('lng'), (req, res) => {
 	var errors = validationResult(req)
 	if (!errors.isEmpty() || Object.keys(req.body).length === 0 || !isFloat(req.body.lat) || !isFloat(req.body.lng)){
@@ -70,12 +70,6 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
   	lat = validator.escape(lat)
   	lng = validator.escape(lng)
 
-  // 	client
-  // 		.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng])
-		// .then(res.json(data))
-		// .catch(e => res.sendStatus(500))
-		// .then(() => client.end())
-
 	pool.connect((err, client, done) => {
 	  if (err) throw err
 	  client.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng], (err, result) => {
@@ -89,7 +83,36 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
 	})
  })
 
-// Handle requests for passenger information
+// Vehicle check-in
+router.post('/checkin', cors(corsOptions), check('username'), check('lat'), check('lng'), (req, res) => {
+	var errors = validationResult(req)
+	if (!errors.isEmpty() || Object.keys(req.body).length === 0 || !isFloat(req.body.lat) || !isFloat(req.body.lng)){
+		res.json({"error":"Whoops, something is wrong with your data!"})
+		return
+	}
+
+	var username = req.body.username
+  	var lat = req.body.lat
+  	var lng = req.body.lng
+
+  	username = validator.escape(username)
+  	lat = validator.escape(lat)
+  	lng = validator.escape(lng)
+
+	pool.connect((err, client, done) => {
+	  if (err) throw err
+	  client.query('INSERT INTO vehicle (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng], (err, result) => {
+	    done()
+	    if (err) {
+	      res.sendStatus(500)
+	    } else {
+	      res.json(data)
+	    }
+	  })
+	})
+ })
+
+// Request for passenger information
 router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) => {
 	var errors = validationResult(req)
 	if (!errors.isEmpty() ||  Object.keys(req.query).length === 0){
@@ -99,12 +122,6 @@ router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) =
 
 	var username = req.query.username
 	username = validator.escape(username)
-
-	// client
-	// 	.query('SELECT * FROM passenger WHERE username = $1;', [username])
-	// 	.then(result => res.json(result.rows))
-	// 	.catch(e => res.sendStatus(500))
-	// 	.then(() => client.end())
 
 	pool.connect((err, client, done) => {
 	  if (err) throw err
