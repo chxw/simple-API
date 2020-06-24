@@ -58,11 +58,11 @@ app.use('/', router)
 // Handle requests for accessing vehicle location information
 router.post('/rides', cors(corsOptions), check('username'), check('lat'), check('lng'), (req, res) => {
 	const errors = validationResult(req);
-	if (!errors.isEmpty() || Object.keys(req.query)length === 0 || !isFloat(parseFloat(lat)) || !isFloat(parseFloat(lng))){
+	if (!errors.isEmpty() || Object.keys(req.query)length === 0){
 		res.json({"error":"Whoops, something is wrong with your data!"})
 	}
 
-	// if (isFloat(parseFloat(lat)) && isFloat(parseFloat(lng))){
+	if (isFloat(parseFloat(lat)) && isFloat(parseFloat(lng))){
 	  	var username = req.body.username
 	  	var lat = req.body.lat
 	  	var lng = req.body.lng
@@ -76,7 +76,9 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
 			.then(res.json(data))
 			.catch(e => res.sendStatus(500))
 			.then(() => client.end())
-  	// }
+  	}
+
+  	res.json({"error":"Whoops, something is wrong with your data!"})
  })
 
 // Handle requests for passenger information
