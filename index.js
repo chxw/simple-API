@@ -76,8 +76,8 @@ router.post('/rides', cors(corsOptions), (req, res) => {
 
 // Handle requests for passenger information
 router.get('/passenger.json', cors(corsOptions), (req, res) => {
-	if(req.params.username){
-		var username = req.params.username
+	if(req.query.username){
+		var username = req.query.username
 
 		client
 			.query('SELECT * FROM passenger WHERE username = $1', [username])
