@@ -81,7 +81,7 @@ router.get('/passenger.json', cors(corsOptions), (req, res) => {
 
 		client
 			.query('SELECT * FROM passenger WHERE username = $1', [username])
-			.then(result => res.json(result))
+			.then(result => res.rows.json(result))
 			.catch(e => res.send(500))
 			.then(() => client.end())
 	// }
