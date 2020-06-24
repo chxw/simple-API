@@ -6,10 +6,8 @@ var { check, validationResult } = require('express-validator')
 const router = express.Router()
 const data = require('./app.json')
 const PORT = process.env.PORT || 5000
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
-
 var cors = require('cors')
 var corsOptions = {
 	origin: '*',
@@ -39,17 +37,12 @@ pool.on('error', (err, client) => {
   process.exit(-1)
 })
 
-
 // // Serve static content in folder named "public"
 // app.use(express.static(path.join(__dirname, 'public')))
 
 // Functions
 function isFloat(n){
 	return Number(n) == n && n % 1 !== 0;
-}
-
-function isString(x){
-	return Object.prototype.toString.call(x) === "[object String]"
 }
 
 app.use('/', router)
@@ -112,7 +105,7 @@ router.post('/checkin', cors(corsOptions), check('username'), check('lat'), chec
 	})
  })
 
-// Request for passenger information
+// Request passenger table
 router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) => {
 	var errors = validationResult(req)
 	if (!errors.isEmpty() ||  Object.keys(req.query).length === 0){
@@ -126,6 +119,30 @@ router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) =
 	pool.connect((err, client, done) => {
 	  if (err) throw err
 	  client.query('SELECT * FROM passenger WHERE username = $1;', [username], (err, result) => {
+	    done()
+	    if (err) {
+	      res.sendStatus(500)
+	    } else {
+	      res.json(result.rows)
+	    }
+	  })
+	})
+})
+
+// Request vehicle table
+router.get('/vehicle.json', cors(corsOptions), check('username'), (req, res) => {
+	var errors = validationResult(req)
+	if (!errors.isEmpty() ||  Object.keys(req.query).length === 0){
+		res.json([])
+		return
+	}
+
+	var username = req.query.username
+	username = validator.escape(username)
+
+	pool.connect((err, client, done) => {
+	  if (err) throw err
+	  client.query('SELECT * FROM vehicle WHERE username = $1;', [username], (err, result) => {
 	    done()
 	    if (err) {
 	      res.sendStatus(500)
