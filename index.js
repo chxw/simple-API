@@ -46,13 +46,6 @@ function isString(x){
 	return Object.prototype.toString.call(x) === "[object String]"
 }
 
-function checkExists(table, field, value){
-	client.query('select exists(select 1 from $1 where $2 = $3', [table, field, value])
-		.then(result => console.log(result))
-		.catch(e)
-		.then(() => client.end())
-}
-
 app.use('/', router)
 
 // Handle requests for accessing vehicle location information
@@ -90,7 +83,7 @@ router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) =
 	client
 		.query('SELECT * FROM passenger WHERE username = $1;', [username])
 		.then(result => res.json(result.rows))
-		.catch(e => res.json([]))
+		.catch(e => res.sendStatus(500))
 		.then(() => client.end())
 })
 
