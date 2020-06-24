@@ -76,7 +76,7 @@ router.post('/rides', cors(corsOptions), (req, res) => {
  })
 
 router.get('/passenger.json', cors(corsOptions), (req, res) => {
-	if(req.body.username){
+	// if(req.body.username){
 		var username = req.body.username
 
 		client
@@ -84,8 +84,8 @@ router.get('/passenger.json', cors(corsOptions), (req, res) => {
 			.then(result => res.json(result))
 			.catch(e => res.send(500))
 			.then(() => client.end())
-	}
-	res.json([])
+	// }
+	// res.json([])
 })
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
