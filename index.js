@@ -67,7 +67,7 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
   	client
   		.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng])
 		.then(res.json(data))
-		.catch(e => reject(e))
+		.catch(e => res.sendStatus(500))
 		.then(() => client.end())
  })
 
@@ -85,7 +85,7 @@ router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) =
 	client
 		.query('SELECT * FROM passenger WHERE username = $1;', [username])
 		.then(result => res.json(result.rows))
-		.catch(e => reject(e))
+		.catch(e => res.sendStatus(500))
 		.then(() => client.end())
 })
 
