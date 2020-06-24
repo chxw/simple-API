@@ -47,7 +47,7 @@ router.post('/rides', cors(corsOptions), (req, res) => {
   	lat = validator.escape(lat)
   	lng = validator.escape(lng)
 
-  	if (isString(req.body.username) && isFloat(lat) && isFloat(lng)){
+  	if (req.body.username && isFloat(lat) && isFloat(lng)){
   		client.query('INSERT INTO passenger (username, lat, lng) VALUES ('+username+', '+lat+', '+lng), (error, result) => {
   			if (!error){
   				res.json(data)
@@ -57,7 +57,9 @@ router.post('/rides', cors(corsOptions), (req, res) => {
   			}
   		}
   	}
-  	res.json({error:"Whoops, something is wrong with your data!"})
+  	else {
+  		res.json({error:"Whoops, something is wrong with your data!"})
+  	}
  })
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
