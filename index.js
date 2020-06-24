@@ -1,12 +1,14 @@
-var bodyParser = require("body-parser")
-var validator = require('validator')
 var express = require('express')
 var app = express()
+var bodyParser = require("body-parser")
+var validator = require('validator')
 // const router = express.Router()
 const data = require('./app.json')
 const PORT = process.env.PORT || 5000
 
-var urlencodedParser = bodyParser.urlencoded({extend: true})
+var urlencodedParser = bodyParser.urlencoded({extend: false})
+app.use(bodyParser.json())
+
 var cors = require('cors')
 var corsOptions = {
 	origin: '*',
