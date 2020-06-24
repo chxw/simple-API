@@ -68,7 +68,7 @@ router.post('/rides', cors(corsOptions), (req, res) => {
 	  	client
 	  		.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng])
 			.then(res.json(data))
-			.catch(e => res.send(500))
+			.catch(e => res.sendStatus(500))
 			.then(() => client.end())
   	}
   	res.json({"error":"Whoops, something is wrong with your data!"})
@@ -79,13 +79,13 @@ router.get('/passenger.json', cors(corsOptions), (req, res) => {
 	// if (req.query.username === {}){
 	// 	res.json([])
 	// }
-	
+
 	var username = req.query.username
 
 	client
 		.query('SELECT * FROM passenger WHERE username = $1', [username])
 		.then(result => res.json(result.rows))
-		.catch(e => res.send(500))
+		.catch(e => res.sendStatus(500))
 		.then(() => client.end())
 })
 
