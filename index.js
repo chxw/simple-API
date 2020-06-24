@@ -2,6 +2,7 @@ var express = require('express')
 var app = express()
 var bodyParser = require("body-parser")
 var validator = require('validator')
+var check = require('express-validator')
 const router = express.Router()
 const data = require('./app.json')
 const PORT = process.env.PORT || 5000
@@ -75,10 +76,7 @@ router.post('/rides', cors(corsOptions), (req, res) => {
  })
 
 // Handle requests for passenger information
-router.get('/passenger.json', cors(corsOptions), (req, res) => {
-	if (!req.query.username){
-		res.json([])
-	}
+router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) => {
 	var username = req.query.username
 	username = validator.escape(username)
 
