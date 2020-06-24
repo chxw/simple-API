@@ -50,24 +50,9 @@ router.post('/rides', cors(corsOptions), (req, res) => {
   	lat = validator.escape(lat)
   	lng = validator.escape(lng)
 
-  	// if (req.body.username && isFloat(parseFloat(lat)) && isFloat(parseFloat(lng))){
-  	// 	client.query('INSERT INTO passenger (username, lat, lng) VALUES ('+username+', '+lat+', '+lng), (error, result) => {
-  	// 		if (!error){
-  	// 			res.json(data)
-  	// 			client.end()
-  	// 		}
-  	// 		else {
-  	// 			res.send(500)
-  	// 		}
-  	// 	}
-  	// }
-  	// else {
-  	// 	res.json({error:"Whoops, something is wrong with your data!"})
-  	// }
-
   	if (req.body.username && isFloat(parseFloat(lat)) && isFloat(parseFloat(lng))){
 	  	client
-	  		.query('INSERT INTO passenger (username, lat, lng) VALUES ('+username+', '+lat+', '+lng)
+	  		.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng])
 			.then(res.json(data))
 			.catch(e => res.send(500))
 			.then(() => client.end())
