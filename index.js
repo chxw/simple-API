@@ -25,14 +25,20 @@ var db = "d2i0g7j8olar5k"
 
 // Connect to Heroku PostgreSQL, configure using default options || manual enter options
 const connectionString = "postgres://"+un+":"+pw+"@"+host+":"+port+"/"+db;
-const { Client } = require('pg')
-const client = new Client({
+const { Pool } = require('pg')
+const pool = new Pool({
 	connectionString: process.env.DATABASE_URL || connectionString,
 	ssl:{
 		rejectUnauthorized: false
 	}
 })
-client.connect()
+// the pool will emit an error on behalf of any idle clients
+// it contains if a backend error or network partition happens
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err)
+  process.exit(-1)
+})
+
 
 // // Serve static content in folder named "public"
 // app.use(express.static(path.join(__dirname, 'public')))
@@ -64,11 +70,23 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
   	lat = validator.escape(lat)
   	lng = validator.escape(lng)
 
-  	client
-  		.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng])
-		.then(res.json(data))
-		.catch(e => res.sendStatus(500))
-		.then(() => client.end())
+  // 	client
+  // 		.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng])
+		// .then(res.json(data))
+		// .catch(e => res.sendStatus(500))
+		// .then(() => client.end())
+
+	pool.connect((err, client, done) => {
+	  if (err) throw err
+	  client.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng], (err, res) => {
+	    done()
+	    if (err) {
+	      res.sendStatus(500)
+	    } else {
+	      res.json(data)
+	    }
+	  })
+	})
  })
 
 // Handle requests for passenger information
@@ -82,11 +100,23 @@ router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) =
 	var username = req.query.username
 	username = validator.escape(username)
 
-	client
-		.query('SELECT * FROM passenger WHERE username = $1;', [username])
-		.then(result => res.json(result.rows))
-		.catch(e => res.sendStatus(500))
-		.then(() => client.end())
+	// client
+	// 	.query('SELECT * FROM passenger WHERE username = $1;', [username])
+	// 	.then(result => res.json(result.rows))
+	// 	.catch(e => res.sendStatus(500))
+	// 	.then(() => client.end())
+
+	pool.connect((err, client, done) => {
+	  if (err) throw err
+	  client.query('SELECT * FROM passenger WHERE username = $1;', [username], (err, res) => {
+	    done()
+	    if (err) {
+	      res.sendStatus(500)
+	    } else {
+	      res.json(result.rows)
+	    }
+	  })
+	})
 })
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
