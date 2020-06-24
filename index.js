@@ -2,7 +2,7 @@ var express = require('express')
 var app = express()
 var bodyParser = require("body-parser")
 var validator = require('validator')
-const { check, validationResult } = require('express-validator')
+var { check, validationResult } = require('express-validator')
 const router = express.Router()
 const data = require('./app.json')
 const PORT = process.env.PORT || 5000
@@ -57,7 +57,7 @@ app.use('/', router)
 
 // Handle requests for accessing vehicle location information
 router.post('/rides', cors(corsOptions), check('username'), check('lat'), check('lng'), (req, res) => {
-	const errors = validationResult(req);
+	var errors = validationResult(req);
 	if (!errors.isEmpty() || Object.keys(req.body).length === 0 || !isFloat(req.body.lat) || !isFloat(req.body.lng)){
 		res.json({"error":"Whoops, something is wrong with your data!"})
 	}
@@ -79,7 +79,7 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
 
 // Handle requests for passenger information
 router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) => {
-	const errors = validationResult(req);
+	var errors = validationResult(req);
 	if (!errors.isEmpty() ||  Object.keys(req.query).length === 0){
 		res.json([])
 	}
