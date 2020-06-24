@@ -30,12 +30,23 @@ function isFloat(n){
 
 // Handle requests for vehicle location information
 router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
-  	const username = req.body.username
-  	const lat = req.body.lat
-  	const lng = req.body.lng
+  	var username = req.body.username
+  	var lat = req.body.lat
+  	var lng = req.body.lng
+
+  	username = validator.escape(username)
+  	lat = validator.escape(lat)
+  	lng = validator.escpae(lng)
 
   	if (req.body.username && isFloat(lat) && isFloat(lng)){
-  		res.json(data)
+  		client.query('INSERT INTO passenger (username, lat, lng) VALUES ('+username+', '+lat+', '+lng), (error, result) => {
+  			if (!error){
+  				res.json(data)
+  			}
+  			else {
+  				res.json({error:"Whoops, something is wrong with your data!"})
+  			}
+  		}
   	}
   	res.json({error:"Whoops, something is wrong with your data!"})
  })
