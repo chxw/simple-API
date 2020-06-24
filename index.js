@@ -76,12 +76,13 @@ router.post('/rides', cors(corsOptions), (req, res) => {
 
 // Handle requests for passenger information
 router.get('/passenger.json', cors(corsOptions), (req, res) => {
-	if (req.query.username === '' || req.query.username === undefined){
+	var username = req.query.username
+	username = validator.escape(username)
+
+	if (req.query.username === '' || req.query.username === undefined || checkExists('passenger', 'username', username)){
 		res.json([])
 	}
 
-	var username = req.query.username
-	username = validator.escape(username)
 
 	client
 		.query('SELECT * FROM passenger WHERE username = $1', [username])
