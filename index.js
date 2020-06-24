@@ -26,8 +26,8 @@ const client = new Client({
 client.connect()
 
 
-// Serve static content in folder named "public"
-app.use(express.static(path.join(__dirname, 'public')))
+// // Serve static content in folder named "public"
+// app.use(express.static(path.join(__dirname, 'public')))
 
 // Functions
 function isFloat(n){
