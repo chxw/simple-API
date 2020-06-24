@@ -6,7 +6,7 @@ var app = express()
 const data = require('./app.json')
 const PORT = process.env.PORT || 5000
 
-var urlencodedParser = bodyParser.urlencoded({extend: false})
+var urlencodedParser = bodyParser.urlencoded({extend: true})
 var cors = require('cors')
 var corsOptions = {
 	origin: '*',
