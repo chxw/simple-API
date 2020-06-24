@@ -81,7 +81,8 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
 router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) => {
 	var errors = validationResult(req);
 	if (!errors.isEmpty() ||  Object.keys(req.query).length === 0){
-		res.json([])
+		res.send(errors)
+		// res.json([])
 	}
 
 	var username = req.query.username
