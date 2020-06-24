@@ -121,3 +121,5 @@ $ heroku open
 [https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-mac](https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-mac)
 
 [https://stackoverflow.com/questions/51924864/express-validator-how-to-check-queries](https://stackoverflow.com/questions/51924864/express-validator-how-to-check-queries)
+
+[https://stackoverflow.com/questions/26292267/how-do-i-check-if-query-string-has-values-in-express-js-node-js](https://stackoverflow.com/questions/26292267/how-do-i-check-if-query-string-has-values-in-express-js-node-js)
