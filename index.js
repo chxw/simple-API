@@ -54,6 +54,7 @@ router.post('/rides', cors(corsOptions), (req, res) => {
   		client.query('INSERT INTO passenger (username, lat, lng) VALUES ('+username+', '+lat+', '+lng), (error, result) => {
   			if (!error){
   				res.json(data)
+  				client.end()
   			}
   			else {
   				res.send(500)
