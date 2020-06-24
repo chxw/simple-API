@@ -79,7 +79,7 @@ router.post('/rides', cors(corsOptions), (req, res) => {
 
 // Handle requests for passenger information
 router.get('/passenger.json', cors(corsOptions), (req, res) => {
-	if(checkExists(req.body.username)){
+	if(checkExists('passenger', 'username', req.body.username)){
 		var username = req.body.username
 
 		client
