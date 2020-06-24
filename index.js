@@ -24,9 +24,9 @@ var port = "5432"
 var db = "d2i0g7j8olar5k"
 
 // Connect to Heroku PostgreSQL, configure using default options || manual enter options
-var connectionString = "postgres://"+un+":"+pw+"@"+host+":"+port+"/"+db;
-var { Client } = require('pg')
-var client = new Client({
+const connectionString = "postgres://"+un+":"+pw+"@"+host+":"+port+"/"+db;
+const { Client } = require('pg')
+const client = new Client({
 	connectionString: process.env.DATABASE_URL || connectionString,
 	ssl:{
 		rejectUnauthorized: false
