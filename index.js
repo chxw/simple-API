@@ -1,9 +1,9 @@
-const express = require('express')
-const bodyParser = require("body-parser")
 const router = express.Router()
 const data = require('./app.json')
-const { Client } = require('pg')
 const PORT = process.env.PORT || 5000
+var express = require('express')
+var bodyParser = require("body-parser")
+var validator = require('validator')
 var app = express()
 var urlencodedParser = bodyParser.urlencoded({extend: false})
 var cors = require('cors')
@@ -13,6 +13,7 @@ var corsOptions = {
 }
 
 // Connect to Heroku PostgreSQL, configure using default options
+const { Client } = require('pg')
 const client = new Client({
 	connectionString: process.env.DATABASE_URL,
 	ssl:{
@@ -27,6 +28,10 @@ function isFloat(n){
 	return Number(n) == n && n % 1 !== 0;
 }
 
+function isString(x){
+	return Object.prototype.toString.call(x) === "[object String]"
+}
+
 
 // Handle requests for vehicle location information
 router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
@@ -38,13 +43,13 @@ router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
   	lat = validator.escape(lat)
   	lng = validator.escpae(lng)
 
-  	if (req.body.username && isFloat(lat) && isFloat(lng)){
+  	if (isString(req.body.username) && isFloat(lat) && isFloat(lng)){
   		client.query('INSERT INTO passenger (username, lat, lng) VALUES ('+username+', '+lat+', '+lng), (error, result) => {
   			if (!error){
   				res.json(data)
   			}
   			else {
-  				res.json({error:"Whoops, something is wrong with your data!"})
+  				res.send(500)
   			}
   		}
   	}
