@@ -45,6 +45,14 @@ function isString(x){
 	return Object.prototype.toString.call(x) === "[object String]"
 }
 
+function exists(x){
+	client
+		.query('select exists(select 1 from $1 where $2 = $3', [$1, $2, $3])
+		.then()
+		.catch(e)
+		.then(client.end())
+}
+
 app.use('/', router)
 
 // Handle requests for vehicle location information
@@ -68,7 +76,16 @@ router.post('/rides', cors(corsOptions), (req, res) => {
  })
 
 router.get('/passenger.json', cors(corsOptions), (req, res) => {
-	var username = req.body.username
+	if(req.body.username){
+		var username = req.body.username
+
+		client
+			.query('IF EXISTS (SELECT 1 FROM passenger WHERE $1 = $2) THEN SELECT * FROM passenger WHERE username = $3 ENDIF;', ['username', username, username])
+			.then(result => res.json(result))
+			.catch(e => res.send(500))
+			.then(() => client.end())
+	}
+	res.json([])
 })
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))

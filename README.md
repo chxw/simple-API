@@ -111,3 +111,11 @@ $ heroku open
 [https://www.javatpoint.com/steps-to-write-and-execute-a-shell-script](https://www.javatpoint.com/steps-to-write-and-execute-a-shell-script)
 
 [https://stackoverflow.com/questions/46393011/postgres-how-to-view-contents-of-a-table](https://stackoverflow.com/questions/46393011/postgres-how-to-view-contents-of-a-table)
+
+[https://www.postgresqltutorial.com/postgresql-where/](https://www.postgresqltutorial.com/postgresql-where/)
+
+[https://www.tutorialspoint.com/postgresql/postgresql_delete_query.htm](https://www.tutorialspoint.com/postgresql/postgresql_delete_query.htm)
+
+[https://devcenter.heroku.com/changelog-items/438](https://devcenter.heroku.com/changelog-items/438)
+
+[https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-mac](https://devcenter.heroku.com/articles/heroku-postgresql#set-up-postgres-on-mac)
