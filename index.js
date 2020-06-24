@@ -1,8 +1,8 @@
-var express = require('express')
 var bodyParser = require("body-parser")
 var validator = require('validator')
+var express = require('express')
 var app = express()
-const router = express.Router()
+// const router = express.Router()
 const data = require('./app.json')
 const PORT = process.env.PORT || 5000
 
@@ -35,7 +35,7 @@ function isString(x){
 
 
 // Handle requests for vehicle location information
-router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
+app.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
   	var username = req.body.username
   	var lat = req.body.lat
   	var lng = req.body.lng
@@ -56,7 +56,5 @@ router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
   	}
   	res.json({error:"Whoops, something is wrong with your data!"})
  })
-
-app.use("/", router)
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
