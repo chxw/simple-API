@@ -99,3 +99,9 @@ $ heroku open
 [https://devcenter.heroku.com/articles/error-codes#h12-request-timeout](https://devcenter.heroku.com/articles/error-codes#h12-request-timeout)
 
 [https://stackoverflow.com/questions/31793971/node-js-problems-with-postgresql-database-insert-operation](https://stackoverflow.com/questions/31793971/node-js-problems-with-postgresql-database-insert-operation)
+
+[https://stackoverflow.com/questions/19085609/trying-to-connect-my-node-js-to-heroku-postgresql-database-following-heroku-pos](https://stackoverflow.com/questions/19085609/trying-to-connect-my-node-js-to-heroku-postgresql-database-following-heroku-pos)
+
+[https://stackoverflow.com/questions/20775490/how-to-create-or-manage-heroku-postgres-database-instance](https://stackoverflow.com/questions/20775490/how-to-create-or-manage-heroku-postgres-database-instance)
+
+[https://stackoverflow.com/questions/15364817/type-of-request-body-for-expressjs](https://stackoverflow.com/questions/15364817/type-of-request-body-for-expressjs)
