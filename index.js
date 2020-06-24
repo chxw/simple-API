@@ -80,7 +80,7 @@ router.get('/passenger.json', cors(corsOptions), (req, res) => {
 		var username = req.body.username
 
 		client
-			.query('IF EXISTS (SELECT 1 FROM passenger WHERE $1 = $2) THEN SELECT * FROM passenger WHERE username = $3 ENDIF;', ['username', username, username])
+			.query('SELECT * FROM passenger WHERE username = $1', [username])
 			.then(result => res.json(result))
 			.catch(e => res.send(500))
 			.then(() => client.end())
