@@ -97,3 +97,5 @@ $ heroku open
 [https://devcenter.heroku.com/articles/request-timeout](https://devcenter.heroku.com/articles/request-timeout)
 
 [https://devcenter.heroku.com/articles/error-codes#h12-request-timeout](https://devcenter.heroku.com/articles/error-codes#h12-request-timeout)
+
+[https://stackoverflow.com/questions/31793971/node-js-problems-with-postgresql-database-insert-operation](https://stackoverflow.com/questions/31793971/node-js-problems-with-postgresql-database-insert-operation)
