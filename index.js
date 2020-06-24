@@ -62,7 +62,7 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
 		res.json({"error":"Whoops, something is wrong with your data!"})
 	}
 
-  	var username = req.body.username
+	var username = req.body.username
   	var lat = req.body.lat
   	var lng = req.body.lng
 
@@ -70,15 +70,16 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
   	lat = validator.escape(lat)
   	lng = validator.escape(lng)
 
-	if (isFloat(parseFloat(lat)) && isFloat(parseFloat(lng))){
+	if (isFloat(lat) && isFloat(lng)){
 	  	client
 	  		.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng])
 			.then(res.json(data))
 			.catch(e => res.sendStatus(500))
 			.then(() => client.end())
   	}
-
-  	res.json({"error":"Whoops, something is wrong with your data!"})
+  	else {
+  		res.json({"error":"Whoops, something is wrong with your data!"})
+  	}
  })
 
 // Handle requests for passenger information

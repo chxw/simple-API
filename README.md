@@ -25,7 +25,7 @@ Cross-Origin Resource Sharing (CORS) is enabled for this API. Client must send P
 
 Example:
 ``` sh
-$ curl --data "username=USERNAME&lat=12.12&lng12.12"
+$ curl --data "username=USERNAME&lat=12.12&lng=12.12"
 ```
 
 If client does not send the three inputs correctly, you will receive the following JSON:
