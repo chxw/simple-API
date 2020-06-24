@@ -65,11 +65,13 @@ router.post('/rides', cors(corsOptions), (req, res) => {
   	// 	res.json({error:"Whoops, something is wrong with your data!"})
   	// }
 
-  	client
-  		.query('INSERT INTO passenger (username, lat, lng) VALUES ('+username+', '+lat+', '+lng)
-		.then(res.json(data))
-		.catch(e => console.error(e.stack))
-		.then(() => client.end())
+  	if (req.body.username && isFloat(parseFloat(lat)) && isFloat(parseFloat(lng))){
+	  	client
+	  		.query('INSERT INTO passenger (username, lat, lng) VALUES ('+username+', '+lat+', '+lng)
+			.then(res.json(data))
+			.catch(e => res.send(500))
+			.then(() => client.end())
+  	}
  })
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
