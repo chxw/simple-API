@@ -58,19 +58,19 @@ app.use('/', router)
 // Handle requests for accessing vehicle location information
 router.post('/rides', cors(corsOptions), check('username'), check('lat'), check('lng'), (req, res) => {
 	const errors = validationResult(req);
-	if (!errors.isEmpty() || Object.keys(req.query)length === 0){
+	if (!errors.isEmpty() || Object.keys(req.query).length === 0){
 		res.json({"error":"Whoops, something is wrong with your data!"})
 	}
 
+  	var username = req.body.username
+  	var lat = req.body.lat
+  	var lng = req.body.lng
+
+  	username = validator.escape(username)
+  	lat = validator.escape(lat)
+  	lng = validator.escape(lng)
+
 	if (isFloat(parseFloat(lat)) && isFloat(parseFloat(lng))){
-	  	var username = req.body.username
-	  	var lat = req.body.lat
-	  	var lng = req.body.lng
-
-	  	username = validator.escape(username)
-	  	lat = validator.escape(lat)
-	  	lng = validator.escape(lng)
-
 	  	client
 	  		.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng])
 			.then(res.json(data))
