@@ -78,7 +78,7 @@ router.post('/rides', cors(corsOptions), check('username'), check('lat'), check(
 
 	pool.connect((err, client, done) => {
 	  if (err) throw err
-	  client.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng], (err, res) => {
+	  client.query('INSERT INTO passenger (username, lat, lng) VALUES ($1, $2, $3);', [username, lat, lng], (err, result) => {
 	    done()
 	    if (err) {
 	      res.sendStatus(500)
@@ -108,7 +108,7 @@ router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) =
 
 	pool.connect((err, client, done) => {
 	  if (err) throw err
-	  client.query('SELECT * FROM passenger WHERE username = $1;', [username], (err, res) => {
+	  client.query('SELECT * FROM passenger WHERE username = $1;', [username], (err, result) => {
 	    done()
 	    if (err) {
 	      res.sendStatus(500)
