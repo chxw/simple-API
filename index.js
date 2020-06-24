@@ -2,7 +2,7 @@ var express = require('express')
 var app = express()
 var bodyParser = require("body-parser")
 var validator = require('validator')
-// const router = express.Router()
+const router = express.Router()
 const data = require('./app.json')
 const PORT = process.env.PORT || 5000
 
@@ -35,9 +35,10 @@ function isString(x){
 	return Object.prototype.toString.call(x) === "[object String]"
 }
 
+app.use('/', router)
 
 // Handle requests for vehicle location information
-app.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
+router.post('/rides', cors(corsOptions), urlencodedParser, (req, res) => {
   	var username = req.body.username
   	var lat = req.body.lat
   	var lng = req.body.lng
