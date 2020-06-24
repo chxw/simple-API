@@ -26,7 +26,7 @@ var db = "d2i0g7j8olar5k"
 var connectionString = "postgres://"+un+":"+pw+"@"+host+":"+port+"/"+db;
 const { Client } = require('pg')
 const client = new Client({
-	connectionString: process.env.DATABASE_URL || ,
+	connectionString: process.env.DATABASE_URL || connectionString,
 	ssl:{
 		rejectUnauthorized: false
 	}
