@@ -78,7 +78,7 @@ router.post('/rides', cors(corsOptions), (req, res) => {
 // Handle requests for passenger information
 router.get('/passenger.json', cors(corsOptions), check('username'), (req, res) => {
 	const errors = validationResult(req);
-	if (errors.isEmpty() and req.query !== {}){
+	if (errors.isEmpty() && req.query !== {}){
 		var username = req.query.username
 		username = validator.escape(username)
 
