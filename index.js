@@ -6,8 +6,8 @@ const router = express.Router()
 const data = require('./app.json')
 const PORT = process.env.PORT || 5000
 
-app.use(bodyParser.urlencoded({extend: false}))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 var cors = require('cors')
 var corsOptions = {
@@ -23,8 +23,11 @@ const client = new Client({
 		rejectUnauthorized: false
 	}
 })
-
 client.connect()
+
+
+// Serve static content in folder named "public"
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Functions
 function isFloat(n){
