@@ -76,13 +76,16 @@ router.post('/rides', cors(corsOptions), (req, res) => {
 
 // Handle requests for passenger information
 router.get('/passenger.json', cors(corsOptions), (req, res) => {
-	var username = req.query.username
+	if (req.param('username') != '' || req.param('username') != undefined){
+		var username = req.query.username
 
-	client
-		.query('SELECT * FROM passenger WHERE username = $1', [username])
-		.then(result => res.json(result.rows))
-		.catch(error => res.json([]))
-		.then(() => client.end())
+		client
+			.query('SELECT * FROM passenger WHERE username = $1', [username])
+			.then(result => res.json(result.rows))
+			.catch(e => res.send(500))
+			.then(() => client.end())
+	}
+	res.json([])
 })
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
