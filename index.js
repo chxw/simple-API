@@ -79,7 +79,7 @@ router.get('/passenger.json', cors(corsOptions), (req, res) => {
 	var username = req.query.username
 	username = validator.escape(username)
 
-	if (req.query.username === '' || req.query.username === undefined || checkExists('passenger', 'username', username)){
+	if (req.query.username === '' || req.query.username === undefined){
 		res.json([])
 	}
 
