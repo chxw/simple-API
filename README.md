@@ -1,8 +1,54 @@
-## Name
+#### Name
 chxw
 
-## Date
+#### Date
 6/23/2020
+
+# API Documentation
+No authentication is required for this API. CORS is enabled for all endpoints. All endpoints branch from: https://agile-dusk-02160.herokuapp.com/.
+
+## Open Endpoints
+### Passenger-related 
+#### Passenger requests nearby vehicle information
+
+**URL**: `/rides`
+**Method**: `POST`
+**Auth required**: YES
+**Permissions required**: None
+**Data constraints**:
+```
+{
+	"username": "[1 to 255 chars]",
+	"lat": "[float]",
+	"lng": "[float]" 
+}
+```
+
+Partial data is not allowed.
+**Data examples**
+```
+curl --data "username=tabasco&lat=-53.50180&lng=-10.94498" https://agile-dusk-02160.herokuapp.com/rides
+```
+
+**Success Response**
+
+```
+[{"_id":"5cdf411856e9c200042989d7","username":"JANET","lat":42.354951,"lng":-71.0509,"created_at":"2020-05-17T23:17:44.427Z"},{"_id":"5cf583aafbbfe80004456918","username":"mXfkjrFw","lat":42.3453,"lng":-71.0464,"created_at":"2020-06-03T20:31:38.378Z"},{"_id":"5cf583aafbbfe80004456919","username":"nZXB8ZHz","lat":42.3662,"lng":-71.0621,"created_at":"2020-06-03T20:31:38.611Z"},{"_id":"5cf583aafbbfe8000445691a","username":"Tkwu74WC","lat":42.3603,"lng":-71.0547,"created_at":"2020-06-03T20:31:38.786Z"},{"_id":"5cf583aafbbfe8000445691b","username":"5KWpnAJN","lat":42.3472,"lng":-71.0802,"created_at":"2020-06-03T20:31:38.932Z"},{"_id":"5cf583abfbbfe8000445691c","username":"uf5ZrXYw","lat":42.3663,"lng":-71.0544,"created_at":"2020-06-03T20:31:39.077Z"},{"_id":"5cf583acfbbfe8000445691d","username":"VMerzMH8","lat":42.3542,"lng":-71.0704,"created_at":"2020-06-03T20:31:40.400Z"}]
+```
+
+**Error Response**
+
+```
+{"error":"Whoops, something is wrong with your data!"}
+```
+
+#### Request passenger table
+
+### Vehicle-related
+
+#### Vehicle checks in with API
+
+#### Request vehicle table
 
 # Lab 10
 A simple server-side web application (Node.js and Express) deployed to Heroku. The purpose of this lab is to understand how a web server serves dynamic and static content.
@@ -46,14 +92,13 @@ $ {"error":"Whoops, something is wrong with your data!"}
 
 ## Going Beyond
 - [X] The basic requirements for POST /rides do not include storing the ride request from a passenger into a database. Store the ride request data username, lat, and lng into a Postgres database. The nodepsqlapp example is a Node.js + Express + Postgres system. One requirement: lat and lng must be stored as floating point numbers.
-- [] If you store ride request data from a passenger (see above), then it only make sense to store data on vehicles as well. Build an API route, an HTTP POST route, for vehicles to "check-in" their availability to pick up passengers. Store the vehicle data username, lat, and lng into a Postgres database. The fields are consistent with ride requests from passengers.
+- [X] If you store ride request data from a passenger (see above), then it only make sense to store data on vehicles as well. Build an API route, an HTTP POST route, for vehicles to "check-in" their availability to pick up passengers. Store the vehicle data username, lat, and lng into a Postgres database. The fields are consistent with ride requests from passengers.
 - [X] Write a GET /passenger.json API route that returns a list of all passenger records for a given username as a JSON string if record(s) exist in database. The mandatory parameter for this API is username. If the username query parameter is empty, not provided, or no results found, return empty JSON list [].
-- [] Write a GET /vehicle.json API route that returns a list of all vehicle records for a given username as a JSON string if record(s) exist in database. The mandatory parameter for this API is username. If the username query parameter is empty, not provided, or no results found, return empty JSON list [].
-- [] Write a GET / route --home page, the root, the index. Accessing this on a web browser (e.g., https://[YOUR_APP_IDENTIFIER_RANDOMLY_GENERATED].herokuapp.com/) shall display list of all the vehicles and/or passengers in the database. Simply outputting JSON as the page is unacceptable; route must return HTML.
-- [] Build another web application + server with the same basic requirements except using a different programming language and framework (e.g., using Django or Flask for Python, Rails or Sinatra for Ruby). Assess the differences and similarities in your README.
+- [X] Write a GET /vehicle.json API route that returns a list of all vehicle records for a given username as a JSON string if record(s) exist in database. The mandatory parameter for this API is username. If the username query parameter is empty, not provided, or no results found, return empty JSON list [].
+- [ ] Write a GET / route --home page, the root, the index. Accessing this on a web browser (e.g., https://[YOUR_APP_IDENTIFIER_RANDOMLY_GENERATED].herokuapp.com/) shall display list of all the vehicles and/or passengers in the database. Simply outputting JSON as the page is unacceptable; route must return HTML.
+- [ ] Build another web application + server with the same basic requirements except using a different programming language and framework (e.g., using Django or Flask for Python, Rails or Sinatra for Ruby). Assess the differences and similarities in your README.
 
 ## Testing edge cases
-
 ```
 ride-API % curl -X GET 'https://agile-dusk-02160.herokuapp.com/passenger.json?username='           
 []%                                                                               
