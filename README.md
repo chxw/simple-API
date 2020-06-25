@@ -7,9 +7,8 @@ chxw
 # API Documentation
 No authentication is required for this API. CORS is enabled for all endpoints. All endpoints branch from: https://agile-dusk-02160.herokuapp.com/.
 
-## Open Endpoints
-### Passenger-related 
-#### Passenger requests nearby vehicle information
+## Passenger-related Endpoints
+### Passenger requests nearby vehicle information
 
 **URL**: `/rides`
 **Method**: `POST`
@@ -42,13 +41,13 @@ curl --data "username=tabasco&lat=-53.50180&lng=-10.94498" https://agile-dusk-02
 {"error":"Whoops, something is wrong with your data!"}
 ```
 
-#### Request passenger table
+### Request passenger table
 
-### Vehicle-related
+## Vehicle-related Endpoints
 
-#### Vehicle checks in with API
+### Vehicle checks in with API
 
-#### Request vehicle table
+### Request vehicle table
 
 # Lab 10
 A simple server-side web application (Node.js and Express) deployed to Heroku. The purpose of this lab is to understand how a web server serves dynamic and static content.
