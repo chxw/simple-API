@@ -4,6 +4,20 @@ chxw
 #### Date
 6/23/2020
 
+- [API Documentation](#api-documentation)
+  * [Passenger-related Endpoints](#passenger-related-endpoints)
+    + [Passenger requests vehicle information](#passenger-requests-vehicle-information)
+    + [Request passenger table](#request-passenger-table)
+  * [Vehicle-related Endpoints](#vehicle-related-endpoints)
+    + [Vehicle checks in with API](#vehicle-checks-in-with-api)
+    + [Request vehicle table](#request-vehicle-table)
+- [Lab 10](#lab-10)
+- [Lab 12](#lab-12)
+  * [Basic Requirements](#basic-requirements)
+  * [Going Beyond](#going-beyond)
+  * [Testing edge cases](#testing-edge-cases)
+- [References](#references)
+
 # API Documentation
 No authentication or permissionning is required for this API. CORS is enabled for all endpoints, i.e. all endpoints are open. All endpoints branch from: https://agile-dusk-02160.herokuapp.com/.
 
@@ -191,7 +205,7 @@ If you do not include `username=[something]` query in your GET request or if the
 ```
 
 # Lab 10
-A simple server-side web application (Node.js and Express) deployed to Heroku. The purpose of this lab is to understand how a web server serves dynamic and static content.
+A simple server-side web application (Node.js and Express) deployed to Heroku. The purpose of this lab is to understand how a web server serves dynamic and static content. 
 
 When client accesses the route `https://[YOUR_APP_IDENTIFIER_RANDOMLY_GENERATED].herokuapp.com/rides)` via `POST /rides`, the following hard-coded JSON empty list is returned as the response:
 
@@ -201,7 +215,7 @@ When client accesses the route `https://[YOUR_APP_IDENTIFIER_RANDOMLY_GENERATED]
 
 Note: accessing `/rides` on a web browser will not work (recall how web browsers work). However if you make an HTTP POST request via `curl` and send it any data (e.g., `curl --data "username=whocares" https://agile-dusk-02160.herokuapp.com/rides)`, the JSON string above will be the reponse.
 
-The web application servest `POST /rides` with JSON `[]` as response successfully, CORS is enabled. No collaboration / discussion with others for this lab. I spent 1-2 hours on this lab.
+**Reflection**: The web application serves `POST /rides` with JSON `[]` as response successfully, CORS is enabled. No collaboration / discussion with others for this lab. I spent 1-2 hours on this lab.
 
 # Lab 12
 
@@ -222,6 +236,7 @@ Example:
 $ curl -X POST https://agile-dusk-02160.herokuapp.com/rides
 $ {"error":"Whoops, something is wrong with your data!"}   
 ```
+**Reflection**: All basic requirements have been successfully implemented. Going Beyond 1-4 have been successfully implemented. I will continue working on Going Beyond 5-6 after the due date. No collaboration / discussion with other people, except via the Internet and Piazza. This lab took 8 hours to complete, including snack and coffee breaks. The README took 1-2 hours to complete.
 
 ## Basic Requirements
 
