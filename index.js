@@ -4,6 +4,7 @@ var bodyParser = require("body-parser")
 var validator = require('validator')
 var { check, validationResult } = require('express-validator')
 const router = express.Router()
+const path = require('path')
 const data = require('./app.json')
 const PORT = process.env.PORT || 5000
 app.use(bodyParser.json())
