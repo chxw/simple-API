@@ -10,7 +10,7 @@ No authentication or permissionning is required for this API. CORS is enabled fo
 ## Passenger-related Endpoints
 ### Passenger requests vehicle information
 
-User sends API username (`username`), latitude (`lat`), and longitude (`lng`) information and receives a JSON string of vehicles (`id`, `username`, `lat`, `lng`, `created_at`). The user's username, latitude, and longitude information is saved in our database as a "passenger".
+User sends username (`username`), latitude (`lat`), and longitude (`lng`) information and receives a JSON string of vehicles (`id`, `username`, `lat`, `lng`, `created_at`). The user's username, latitude, and longitude information is saved in our database as a "passenger".
 
 **URL**: `/rides`
 
@@ -103,6 +103,8 @@ If you do not include `username=[something]` query in your GET request or if the
 
 ### Vehicle checks in with API
 
+User sends username (`username`), latitude (`lat`), and longitude (`lng`) information and receives a JSON string of passengers (`id`, `username`, `lat`, `lng`, `created_at`). The user's username, latitude, and longitude information is saved in our database as a "vehicle".
+
 **URL**: `/checkin`
 
 **Method**: `POST`
@@ -121,8 +123,32 @@ If you do not include `username=[something]` query in your GET request or if the
 curl --data "username=tabasco&lat=-53.50180&lng=-10.94498" https://agile-dusk-02160.herokuapp.com/rides
 ```
 
+**Success Response**
+
+```json
+[
+   {
+      "_id": "5cdf411856e9c200042989d7",
+      "username": "JANET",
+      "lat": 42.35495,
+      "lng": -71.0509,
+      "created_at": "2020-05-17T23:17:44.427Z"
+   },
+   {
+      "_id": "5cf583acfbbfe8000445691d",
+      "username": "VMerzMH8",
+      "lat": 42.3542,
+      "lng": -71.0704,
+      "created_at": "2020-06-03T20:31:40.400Z"
+   }
+]
+```
+
 **Error Response**
 
+```json
+{"error":"Whoops, something is wrong with your data!"}
+```
 
 ### Request vehicle table
 
