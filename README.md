@@ -5,17 +5,19 @@ chxw
 6/23/2020
 
 # API Documentation
-No authentication is required for this API. CORS is enabled for all endpoints. All endpoints branch from: https://agile-dusk-02160.herokuapp.com/.
+No authentication or permissionning is required for this API. CORS is enabled for all endpoints, i.e. all endpoints are open. All endpoints branch from: https://agile-dusk-02160.herokuapp.com/.
 
 ## Passenger-related Endpoints
-### Passenger requests nearby vehicle information
+### Passenger requests vehicle information
+
+User sends API username (`username`), latitude (`lat`), and longitude (`lng`) information and receives a JSON string of vehicles (`id`, `username`, `lat`, `lng`, `created_at`). The user's username, latitude, and longitude information is saved in our database as a "passenger".
 
 **URL**: `/rides`
+
 **Method**: `POST`
-**Auth required**: YES
-**Permissions required**: None
+
 **Data constraints**:
-```
+```json
 {
 	"username": "[1 to 255 chars]",
 	"lat": "[float]",
@@ -24,30 +26,143 @@ No authentication is required for this API. CORS is enabled for all endpoints. A
 ```
 
 Partial data is not allowed.
+
 **Data examples**
-```
+```sh
 curl --data "username=tabasco&lat=-53.50180&lng=-10.94498" https://agile-dusk-02160.herokuapp.com/rides
 ```
 
 **Success Response**
 
-```
-[{"_id":"5cdf411856e9c200042989d7","username":"JANET","lat":42.354951,"lng":-71.0509,"created_at":"2020-05-17T23:17:44.427Z"},{"_id":"5cf583aafbbfe80004456918","username":"mXfkjrFw","lat":42.3453,"lng":-71.0464,"created_at":"2020-06-03T20:31:38.378Z"},{"_id":"5cf583aafbbfe80004456919","username":"nZXB8ZHz","lat":42.3662,"lng":-71.0621,"created_at":"2020-06-03T20:31:38.611Z"},{"_id":"5cf583aafbbfe8000445691a","username":"Tkwu74WC","lat":42.3603,"lng":-71.0547,"created_at":"2020-06-03T20:31:38.786Z"},{"_id":"5cf583aafbbfe8000445691b","username":"5KWpnAJN","lat":42.3472,"lng":-71.0802,"created_at":"2020-06-03T20:31:38.932Z"},{"_id":"5cf583abfbbfe8000445691c","username":"uf5ZrXYw","lat":42.3663,"lng":-71.0544,"created_at":"2020-06-03T20:31:39.077Z"},{"_id":"5cf583acfbbfe8000445691d","username":"VMerzMH8","lat":42.3542,"lng":-71.0704,"created_at":"2020-06-03T20:31:40.400Z"}]
+```json
+[
+   {
+      "_id": "5cdf411856e9c200042989d7",
+      "username": "JANET",
+      "lat": 42.35495,
+      "lng": -71.0509,
+      "created_at": "2020-05-17T23:17:44.427Z"
+   },
+   {
+      "_id": "5cf583acfbbfe8000445691d",
+      "username": "VMerzMH8",
+      "lat": 42.3542,
+      "lng": -71.0704,
+      "created_at": "2020-06-03T20:31:40.400Z"
+   }
+]
 ```
 
 **Error Response**
 
-```
+```json
 {"error":"Whoops, something is wrong with your data!"}
 ```
 
 ### Request passenger table
 
+User sends the `username` of a passenger and receives all instances of data related to that passenger we have in our database.
+
+**URL**: `/passenger.json`
+
+**Method**: `GET`
+
+**Data constraints**:
+```json
+{
+	"username": "[1 to 255 chars]"
+}
+```
+
+**Data examples**
+```sh
+curl --X GET "https://agile-dusk-02160.herokuapp.com/passenger.json?username=USERNAME"
+```
+
+**Success Response**
+
+```json
+[
+   {
+      "username": "USERNAME",
+      "lat": 12.12,
+      "lng": 12.12
+   }
+]
+```
+
+**Error Response**
+
+If you do not include `username=[something]` query in your GET request or if the username you have requested information for does not exist in our database, you will receive the following response:
+
+```json
+[]
+```
+
 ## Vehicle-related Endpoints
 
 ### Vehicle checks in with API
 
+**URL**: `/checkin`
+
+**Method**: `POST`
+
+**Data constraints**:
+```json
+{
+	"username": "[1 to 255 chars]",
+	"lat": "[float]",
+	"lng": "[float]" 
+}
+```
+
+**Data examples**
+```sh
+curl --data "username=tabasco&lat=-53.50180&lng=-10.94498" https://agile-dusk-02160.herokuapp.com/rides
+```
+
+**Error Response**
+
+
 ### Request vehicle table
+
+User sends the `username` of a vehicle and receives all instances of data related to that vehicle we have in our database.
+
+**URL**: `/vehicle.json`
+
+**Method**: `GET`
+
+**Data constraints**:
+```json
+{
+	"username": "[1 to 255 chars]"
+}
+```
+
+**Data examples**
+```sh
+curl --X GET "https://agile-dusk-02160.herokuapp.com/vehicle.json?username=USERNAME"
+```
+
+**Success Response**
+
+```json
+[
+   {
+      "username": "USERNAME",
+      "lat": 12.12,
+      "lng": 12.12
+   }
+]
+```
+
+**Error Response**
+
+If you do not include `username=[something]` query in your GET request or if the username you have requested information for does not exist in our database, you will receive the following response:
+
+```json
+[]
+```
 
 # Lab 10
 A simple server-side web application (Node.js and Express) deployed to Heroku. The purpose of this lab is to understand how a web server serves dynamic and static content.

@@ -99,7 +99,7 @@ router.post('/checkin', cors(corsOptions), check('username'), check('lat'), chec
 	    if (err) {
 	      res.sendStatus(500)
 	    } else {
-	      res.json(data)
+	      return
 	    }
 	  })
 	})
