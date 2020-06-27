@@ -15,7 +15,7 @@ var corsOptions = {
 	optionsSuccessStatus: 200
 }
 
-const winston = require(‘winston’);
+const winston = require(‘winston’)
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.simple(),
@@ -27,7 +27,7 @@ const logger = winston.createLogger({
     new winston.transports.File({ filename: 'error.log', level: 'error' }),
     new winston.transports.File({ filename: 'combined.log' })
   ]
-});
+})
 
 // credentials
 var un  = "cfnaezcfgnzdox"
