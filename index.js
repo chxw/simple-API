@@ -15,6 +15,20 @@ var corsOptions = {
 	optionsSuccessStatus: 200
 }
 
+const winston = require(‘winston’);
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.simple(),
+  transports: [
+    //
+    // - Write to all logs with level `info` and below to `combined.log` 
+    // - Write all logs error (and below) to `error.log`
+    //
+    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+    new winston.transports.File({ filename: 'combined.log' })
+  ]
+});
+
 // credentials
 var un  = "cfnaezcfgnzdox"
 var pw = "7d168de64eb50b1c90b85cbaf5c53a86e7729c6563bdacc40d571d2da896262f"
