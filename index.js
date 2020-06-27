@@ -52,8 +52,7 @@ pool.on('error', (err, client) => {
 })
 
 // // Serve static content in folder named "public"
-// app.use(express.static(path.join(__dirname, 'public')))
-
+app.use(express.static(path.join(__dirname, '/')))
 app.set('view engine', 'ejs')
 
 // Functions
@@ -72,6 +71,7 @@ router.get('/', function(req, res){
 	      res.sendStatus(500)
 	    } else {
 	      res.render('index.ejs', { passenger: result })
+	      res.end()
 	    }
 	  })
 	})
