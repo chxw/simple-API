@@ -65,13 +65,19 @@ app.use('/', router)
 router.get('/', function(req, res){
 	pool.connect((err, client, done) => {
 	  if (err) throw err
-	  client.query('select * from passenger;', (err, result) => {
+	  client.query('select * from passenger;', (err, passenger) => {
 	    done()
 	    if (err) {
 	      res.sendStatus(500)
 	    } else {
-	      res.render('index', { passenger: result.rows })
-	      res.end()
+	    	client.query('select * from vehicle;', (err, vehicle) => {
+	    		if (err){
+	    			res.sendStatus(500)
+	    		} else{
+	    			res.render('index', { passenger: passenger.rows, vehicle: vehicle.rows })
+	    			res.end()
+	    		}
+	    	})
 	    }
 	  })
 	})

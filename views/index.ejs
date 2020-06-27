@@ -28,6 +28,29 @@
         <% } %>
       </tbody>
     </table>
+
+    <h1>Vehicles</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% for(var i=0; i < vehicle.length; i++) { %>
+        <tr>
+          <td><%= vehicle[i].username %></td>
+          <td><%= vehicle[i].lat %></td>
+          <td><%= vehicle[i].lng %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+
     </section>
 </body>
 
