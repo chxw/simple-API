@@ -7,6 +7,7 @@ const router = express.Router()
 const path = require('path')
 const data = require('./app.json')
 const PORT = process.env.PORT || 5000
+const winston = require('winston')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 var cors = require('cors')
@@ -14,8 +15,6 @@ var corsOptions = {
 	origin: '*',
 	optionsSuccessStatus: 200
 }
-
-const winston = require(‘winston’)
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.simple(),
