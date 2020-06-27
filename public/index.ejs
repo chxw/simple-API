@@ -9,16 +9,11 @@
     <section class="home">
     <h1>Passengers</h1>
     <table>
-        <% for(var i=0; i<passenger.length; i++) {%>
-            <tr>
-                <td> <%= passenger[i].username %> </td>
-                <br/>
-                <td> <%= passenger[i].lat %> </td>
-                <br/>
-                <td> <%= passenger[i].lng %> </td>
-            </tr>
-        <% } %>
-    </table>
+        <% for(let [username, lat, lng] of passenger.entries() || []){  %>
+         Username : <%=username%>
+         Lat : <%=lat%>
+         Lng : <%=lng%>
+        <%} %>
     </section>
 </body>
 
