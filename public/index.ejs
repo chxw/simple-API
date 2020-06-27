@@ -8,17 +8,17 @@
 <body>
     <section class="home">
     <h1>Passengers</h1>
-    <ul class="list-group">
+    <table>
         <% for(var i=0; i<passenger.length; i++) {%>
-            <li class="list-group-item">
-                <span>Username: </span><%= passenger[i].username %>
+            <tr>
+                <td> <%= passenger[i].username %> </td>
                 <br/>
-                <span>Lat: </span><%= passenger[i].lat %>
+                <td> <%= passenger[i].lat %> </td>
                 <br/>
-                <span>Lng: </span><%= passenger[i].lng %>
-            </li>
+                <td> <%= passenger[i].lng %> </td>
+            </tr>
         <% } %>
-    </ul>
+    </table>
     </section>
 </body>
 
