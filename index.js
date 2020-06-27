@@ -71,7 +71,7 @@ router.get('/', function(req, res){
 	    if (err) {
 	      res.sendStatus(500)
 	    } else {
-	      res.render('/public/index.ejs', { passenger: result})
+	      res.render('index.ejs', { passenger: result})
 	    }
 	  })
 	})
