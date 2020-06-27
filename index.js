@@ -70,7 +70,7 @@ router.get('/', function(req, res){
 	    if (err) {
 	      res.sendStatus(500)
 	    } else {
-	      res.render('index.ejs', { passenger: result })
+	      res.render('index.ejs', { data: result })
 	      res.end()
 	    }
 	  })

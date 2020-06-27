@@ -8,12 +8,7 @@
 <body>
     <section class="home">
     <h1>Passengers</h1>
-    <table>
-        <% for(let [username, lat, lng] of passenger.entries() || []){  %>
-         Username : <%=username%>
-         Lat : <%=lat%>
-         Lng : <%=lng%>
-        <%} %>
+    <div> <%= data %> <div>
     </section>
 </body>
 
