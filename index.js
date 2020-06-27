@@ -48,6 +48,20 @@ function isFloat(n){
 
 app.use('/', router)
 
+router.get('/', function(req, res)){
+	pool.connect((err, client, done) => {
+	  if (err) throw err
+	  client.query('select * from passenger;', (err, result) => {
+	    done()
+	    if (err) {
+	      res.sendStatus(500)
+	    } else {
+	      res.render('/public/')
+	    }
+	  })
+	})
+}
+
 // Passenger requests for vehicle information
 router.post('/rides', cors(corsOptions), check('username'), check('lat'), check('lng'), (req, res) => {
 	var errors = validationResult(req)
