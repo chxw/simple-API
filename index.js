@@ -70,7 +70,7 @@ router.get('/', function(req, res){
 	    if (err) {
 	      res.sendStatus(500)
 	    } else {
-	      res.render('index', { result: result.rows })
+	      res.render('index', { passenger: result.rows })
 	      res.end()
 	    }
 	  })

@@ -9,11 +9,25 @@
     <section class="home">
     <h1>Passengers</h1>
 
-    <% result.forEach( function (element) { %> 
-                 <%= element.username %>  
-                 <%= element.lat %>  
-                 <%= element.lng %>  
-    <% }); %>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% for(var i=0; i < passenger.length; i++) { %>
+        <tr>
+          <td><%= passenger[i].username %></td>
+          <td><%= passenger[i].lat %></td>
+          <td><%= passenger[i].lng %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
     </section>
 </body>
 
