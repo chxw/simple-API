@@ -153,5 +153,3 @@ router.get('/vehicle.json', cors(corsOptions), check('username'), (req, res) => 
 	  })
 	})
 })
-
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
