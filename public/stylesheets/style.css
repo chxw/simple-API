@@ -10,6 +10,9 @@ th, td {
 tr:hover {
 	background-color: #f5f5f5;
 }
-div>table{
-	float: left;
+.container{
+	display: flex;
+}
+.flex-item{
+	flex-grow: 1;
 }

@@ -8,48 +8,52 @@
 
 <body>
     <section class="home">
-    <div>
-    <h1>Passengers</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-        </tr>
-      </thead>
+    <div class="container">
+      <div class="flex-item"></div>
+      <h1>Passengers</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <% for(var i=0; i < passenger.length; i++) { %>
-        <tr>
-          <td><%= passenger[i].username %></td>
-          <td><%= passenger[i].lat %></td>
-          <td><%= passenger[i].lng %></td>
-        </tr>
-        <% } %>
-      </tbody>
-    </table>
+        <tbody>
+          <% for(var i=0; i < passenger.length; i++) { %>
+          <tr>
+            <td><%= passenger[i].username %></td>
+            <td><%= passenger[i].lat %></td>
+            <td><%= passenger[i].lng %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      </div>
 
-    <h1>Vehicles</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Username</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-        </tr>
-      </thead>
+      <div class="flex-item">
+      <h1>Vehicles</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <% for(var i=0; i < vehicle.length; i++) { %>
-        <tr>
-          <td><%= vehicle[i].username %></td>
-          <td><%= vehicle[i].lat %></td>
-          <td><%= vehicle[i].lng %></td>
-        </tr>
-        <% } %>
-      </tbody>
-    </table>
+        <tbody>
+          <% for(var i=0; i < vehicle.length; i++) { %>
+          <tr>
+            <td><%= vehicle[i].username %></td>
+            <td><%= vehicle[i].lat %></td>
+            <td><%= vehicle[i].lng %></td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      </div>
     </div>
     </section>
 </body>
