@@ -29,13 +29,6 @@ const logger = winston.createLogger({
   ]
 })
 
-// credentials
-// var un  = "cfnaezcfgnzdox"
-// var pw = "7d168de64eb50b1c90b85cbaf5c53a86e7729c6563bdacc40d571d2da896262f"
-// var host = "ec2-34-192-173-173.compute-1.amazonaws.com"
-// var port = "5432"
-// var db = "d2i0g7j8olar5k"
-
 // Connect to Heroku PostgreSQL, configure using default options || manual enter options
 const connectionString = "postgres://"+process.env.UN+":"+process.env.PW+"@"+process.env.HOST+":"+process.env.PORT+"/"+process.env.DB;
 const { Pool } = require('pg')
