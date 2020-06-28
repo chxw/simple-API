@@ -315,3 +315,5 @@ ride-API % curl --data "" https://agile-dusk-02160.herokuapp.com/rides
 [http://expressjs.com/en/api.html#req.query](http://expressjs.com/en/api.html#req.query)
 
 [https://node-postgres.com/features/pooling](https://node-postgres.com/features/pooling)
+
+[https://stackoverflow.com/questions/46632181/how-to-create-html-table-dynamically-from-database-with-node-js-and-express](https://stackoverflow.com/questions/46632181/how-to-create-html-table-dynamically-from-database-with-node-js-and-express)
