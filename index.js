@@ -47,7 +47,7 @@ const pool = new Pool({
 // the pool will emit an error on behalf of any idle clients
 // it contains if a backend error or network partition happens
 pool.on('error', (err, client) => {
-  console.error('Unexpected error on idle client', err)
+  logger.info('Unexpected error on idle client', err)
   process.exit(-1)
 })
 
@@ -55,13 +55,15 @@ pool.on('error', (err, client) => {
 app.use(express.static(path.join(__dirname, '/public')))
 app.set('view engine', 'ejs')
 
-// Functions
 function isFloat(n){
 	return Number(n) == n && n % 1 !== 0;
 }
 
+// ROUTES
+
 app.use('/', router)
 
+// Homepage
 router.get('/', function(req, res){
 	pool.connect((err, client, done) => {
 	  if (err) throw err

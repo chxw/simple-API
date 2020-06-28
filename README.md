@@ -317,3 +317,5 @@ ride-API % curl --data "" https://agile-dusk-02160.herokuapp.com/rides
 [https://node-postgres.com/features/pooling](https://node-postgres.com/features/pooling)
 
 [https://stackoverflow.com/questions/46632181/how-to-create-html-table-dynamically-from-database-with-node-js-and-express](https://stackoverflow.com/questions/46632181/how-to-create-html-table-dynamically-from-database-with-node-js-and-express)
+
+[https://stackoverflow.com/questions/2637696/how-to-place-div-side-by-side](https://stackoverflow.com/questions/2637696/how-to-place-div-side-by-side)
