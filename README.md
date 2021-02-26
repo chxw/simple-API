@@ -4,8 +4,6 @@ chxw
 #### Date
 6/23/2020
 
-![image](image.png)
-
 # TABLE OF CONTENTS
 - [API Documentation](#api-documentation)
   * [Passenger-related Endpoints](#passenger-related-endpoints)
@@ -23,6 +21,8 @@ chxw
 
 # API Documentation
 No authentication or permissionning is required for this API. CORS is enabled for all endpoints, i.e. all endpoints are open. All endpoints branch from: https://agile-dusk-02160.herokuapp.com/.
+
+![image](image.png)
 
 ## Passenger-related Endpoints
 ### Passenger requests vehicle information
